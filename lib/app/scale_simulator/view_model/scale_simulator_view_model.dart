@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:usb_serial/usb_serial.dart';
 
 class ScaleSimulatorViewModel extends ChangeNotifier {
@@ -34,6 +36,13 @@ class ScaleSimulatorViewModel extends ChangeNotifier {
     this.devices.clear();
     List<UsbDevice> devices = await UsbSerial.listDevices();
 
+    for (var device in devices) {
+      print(device.vid);
+      print(device.pid);
+      print(device.productName);
+      print(device.deviceId);
+    }
+
     this.devices.addAll(devices);
     notifyListeners();
   }
@@ -44,7 +53,9 @@ class ScaleSimulatorViewModel extends ChangeNotifier {
     if (_value == "") return;
 
     UsbDevice device = devices.first;
+
     UsbPort? port = await device.create();
+
     bool openResult = await port!.open();
 
     if (!openResult) {
@@ -62,6 +73,7 @@ class ScaleSimulatorViewModel extends ChangeNotifier {
     );
 
     await port.write(Uint8List.fromList(_value.codeUnits));
+    print("Comando enviado");
     await port.close();
   }
 }
