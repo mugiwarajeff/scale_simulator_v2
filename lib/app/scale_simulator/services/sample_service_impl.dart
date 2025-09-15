@@ -7,7 +7,7 @@ class SampleServiceImpl implements SampleService {
   Client _client = Client();
   @override
   Future<List<String>> getSamplesCreatedToday() async {
-    String token = "Token d1vO-?ku]-7IEX-EFUU-XEVV-QVU7-Hu";
+    String token = "Token aevw-qot?-ku]T-FQHE-VVFV-QEQV-UEEI-s";
 
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -39,7 +39,7 @@ class SampleServiceImpl implements SampleService {
 
   @override
   Future<void> sendSampleWeight(String sampleId, String value) async {
-    String token = "Token d1vO-?ku]-7IEX-EFUU-XEVV-QVU7-Hu";
+    String token = "Token aevw-qot?-ku]T-FQHE-VVFV-QEQV-UEEI-s";
 
     Map<String, String> headers = {
       "Content-Type": "application/json",
@@ -47,17 +47,21 @@ class SampleServiceImpl implements SampleService {
     };
 
     Map<String, dynamic> body = {
-      "attributeid": "Weight",
-      "attributeinstance": 1,
-      "keyid1": sampleId,
-      "attributesdcid": "Sample",
       "sdcid": "Sample",
-      "value": value,
+      "keyid1": sampleId,
+      "paramlistid": "Pesagem",
+      "paramlistversionid": "1",
+      "variantid": "1",
+      "dataset": "1",
+      "paramid": "Pesagem",
+      "paramtype": "Standard",
+      "replicateid": "1",
+      "enteredtext": value,
     };
 
     Uri baseUri = Uri.https(
       "testlabotech.brdns.net",
-      "/labvantage/rest/actions/EditSDIAttribute",
+      "/labvantage/rest/actions/EnterDataItem",
     );
 
     Response response = await _client.post(

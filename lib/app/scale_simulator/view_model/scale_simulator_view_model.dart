@@ -121,7 +121,7 @@ class ScaleSimulatorViewModel extends ChangeNotifier {
         UsbPort.PARITY_NONE,
       );
 
-      await port.write(Uint8List.fromList(value.codeUnits));
+      await port.write(Uint8List.fromList("$value,$sampleId".codeUnits));
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
