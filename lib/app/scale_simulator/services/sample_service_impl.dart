@@ -49,11 +49,11 @@ class SampleServiceImpl implements SampleService {
     Map<String, dynamic> body = {
       "sdcid": "Sample",
       "keyid1": sampleId,
-      "paramlistid": "Pesagem",
+      "paramlistid": "Weighting",
       "paramlistversionid": "1",
       "variantid": "1",
       "dataset": "1",
-      "paramid": "Pesagem",
+      "paramid": "Weighting",
       "paramtype": "Standard",
       "replicateid": "1",
       "enteredtext": value,
